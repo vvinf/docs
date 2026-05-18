@@ -42,7 +42,8 @@
             "pages": [
               "ai-tools/cursor",
               "ai-tools/claude-code",
-              "ai-tools/windsurf"
+              "ai-tools/windsurf",
+              "guides/the-4-step-publish-pipeline"
             ]
           }
         ]
