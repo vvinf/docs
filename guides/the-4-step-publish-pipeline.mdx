@@ -1,0 +1,35 @@
+---
+title: "The 4-step publish pipeline"
+description: "How Claude automatically posts content to Mintlify docs using the MCP connection"
+icon: "sparkles"
+---
+
+## The 4-step publish pipeline
+
+This guide explains how Claude can automatically publish content to your Mintlify documentation using the connected Mintlify MCP.
+
+### Step 1: Convert to MDX
+
+Your Claude response is wrapped in proper Mintlify frontmatter (`title`, `description`, `icon`) and formatted as an `.mdx` page ready for Mintlify.
+
+### Step 2: Checkout a branch
+
+Claude calls `Mintlify:checkout` with a slug derived from your page title, creating a new git branch automatically — for example, `admin-mcp/the-4-step-publish-pipeline-a7b65ff`.
+
+### Step 3: Write the page
+
+Depending on your mode setting, Claude either:
+
+- **Creates** a new page using `Mintlify:create_node` with the full MDX content
+- **Appends** to an existing page by reading it first, then writing the combined content
+- **Replaces** an existing page entirely using `Mintlify:write_page`
+
+### Step 4: Save and commit
+
+Claude calls `Mintlify:save` to flush the branch to git, then returns the editor URL so you can review and merge the changes before they go live.
+
+## Tips
+
+- Leave the branch field blank to let Claude auto-name the branch
+- Use the **Page settings** tab in the publisher widget to control the URL path and nav placement
+- After publishing, open the editor URL to verify content before merging to `main`
